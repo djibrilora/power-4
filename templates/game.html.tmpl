@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>POWER 4 - Jeu</title>
+<link rel="stylesheet" href="/static/style.css">
+<style>
+  body { font-family: Arial; text-align: center; }
+  .board { display: inline-block; border: 3px solid #333; margin-top: 15px; }
+  .row { display: flex; }
+  .cell { width: 50px; height: 50px; border: 1px solid #666; display: flex; align-items: center; justify-content: center; background: #1E90FF; }
+  .piece1 { background: red; width: 36px; height: 36px; border-radius: 50%; }
+  .piece2 { background: yellow; width: 36px; height: 36px; border-radius: 50%; }
+</style>
+</head>
+<body>
+  <h1>POWER 4</h1>
+
+  {{if .GameOver}}
+    {{if eq .Winner 0}}
+      <p>Match nul !</p>
+    {{else}}
+      <p>Victoire du joueur {{.Winner}} !</p>
+    {{end}}
+    <form action="/rematch" method="POST"><button type="submit">Rematch</button></form>
+    <form action="/" method="GET"><button type="submit">Retour menu</button></form>
+  {{else}}
+    <p>À toi de jouer — Joueur {{.CurrentPlayer}}</p>
+  {{end}}
+
+  <div>
+    {{range $c := loop .Cols}}
+      <form action="/play" method="POST" style="display:inline-block;">
+        <input type="hidden" name="col" value="{{$c}}">
+        <button type="submit">↓</button>
+      </form>
+    {{end}}
+  </div>
+
+  <div class="board">
+  {{range $rIndex, $row := .Board}}
+    <div class="row">
+      {{range $cIndex, $cell := $row}}
+        <div class="cell">
+          {{if eq $cell 1}}
+            <div class="piece1"></div>
+          {{else if eq $cell 2}}
+            <div class="piece2"></div>
+          {{end}}
+        </div>
+      {{end}}
+    </div>
+  {{end}}
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>POWER 4 - Démarrage</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>POWER 4</h1>
+    <img src="/static/images/logo.png" alt="Logo Power 4" width="160" style="display:block;margin:auto;margin-bottom:20px;">
+    <form action="/newgame" method="POST">
+      <div>
+        <label>Nom Joueur 1:</label>
+        <input type="text" name="player1" required placeholder="Entrez le nom du joueur 1">
+      </div>
+      <div>
+        <label>Nom Joueur 2:</label>
+        <input type="text" name="player2" placeholder="Entrez le nom du joueur 2 (laisser vide pour IA)">
+      </div>
+      <div>
+        <label>Difficulté:</label>
+        <select name="difficulty">
+          <option value="Easy">Easy (6x7)</option>
+          <option value="Normal">Normal (6x9)</option>
+          <option value="Hard">Hard (7x8)</option>
+        </select>
+      </div>
+      <button type="submit">JOUER</button>
+    </form>
+  </div>
+</body>
+</html>
